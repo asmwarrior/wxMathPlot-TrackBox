@@ -597,7 +597,7 @@ public:
 
 	bool IsFX() { return TRUE; }
 	
-	bool IsTrackable() { return m_trackable; }
+	bool IsTrackable() override { return m_trackable; }
 	
 	void SetTrackable(bool track) { m_trackable = track; } //Defines if layer can be shown on TrackBox
 
@@ -636,7 +636,7 @@ public:
 
 	bool IsFY() { return TRUE; }
 	
-	bool IsTrackable() { return m_trackable; }
+	bool IsTrackable() override { return m_trackable; }
 	
 	void SetTrackable(bool track) { m_trackable = track; } //Defines if layer can be shown on TrackBox
 
@@ -685,7 +685,7 @@ public:
 
 	bool IsFXY() { return TRUE; }
 	
-	bool IsTrackable() { return m_trackable; }
+	bool IsTrackable() override { return m_trackable; }
 	
 	void SetTrackable(bool track) { m_trackable = track; } //Defines if layer can be shown on TrackBox
 

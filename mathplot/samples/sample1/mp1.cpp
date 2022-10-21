@@ -234,9 +234,9 @@ MyFrame::MyFrame() : wxFrame( (wxFrame *)NULL, -1, wxT("wxWindows mathplot sampl
 	SetMenuBar( menu_bar );
 	CreateStatusBar(1);
 
-	mpLayer* l;
-	mpLayer* s;
-	mpLayer* c;
+	MyLissajoux* l;
+	MySIN* s;
+	MyCOSinverse* c;
 
 	// Create a mpFXYVector layer
 	mpFXYVector* vectorLayer = new mpFXYVector(_("Vector"));
@@ -286,6 +286,11 @@ MyFrame::MyFrame() : wxFrame( (wxFrame *)NULL, -1, wxT("wxWindows mathplot sampl
 	m_plot->AddLayer( leg = new mpInfoLegend(wxRect(300,20,40,40), wxTRANSPARENT_BRUSH)); //&hatch2));
 	leg->SetName("legend");
 	leg->SetVisible(true);
+
+
+	s->SetTrackable(false);
+	c->SetTrackable(false);
+	vectorLayer->SetTrackable(false);
 
 	// m_plot->EnableCoordTooltip(true);
 	// set a nice pen for the lissajoux
