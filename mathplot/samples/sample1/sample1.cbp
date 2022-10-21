@@ -26,6 +26,7 @@
 			<Add directory="%WXWIN%/include" />
 		</ResourceCompiler>
 		<Unit filename="../../mathplot.cpp" />
+		<Unit filename="../../mathplot.h" />
 		<Unit filename="mp1.cpp" />
 		<Extensions />
 	</Project>
