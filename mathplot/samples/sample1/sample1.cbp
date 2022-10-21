@@ -5,7 +5,6 @@
 		<Option title="sample1" />
 		<Option execution_dir="./" />
 		<Option pch_mode="2" />
-		<Option default_target="win_gcc" />
 		<Option compiler="null" />
 		<Build>
 			<Target title="win_gcc">
@@ -23,18 +22,11 @@
 				</Linker>
 			</Target>
 		</Build>
-		<VirtualTargets>
-			<Add alias="All" targets="win_gcc;win_bcc;win_vc;" />
-		</VirtualTargets>
 		<ResourceCompiler>
 			<Add directory="%WXWIN%/include" />
 		</ResourceCompiler>
-		<Unit filename="../../mathplot.cpp">
-			<Option target="win_gcc" />
-		</Unit>
-		<Unit filename="mp1.cpp">
-			<Option target="win_gcc" />
-		</Unit>
+		<Unit filename="../../mathplot.cpp" />
+		<Unit filename="mp1.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
