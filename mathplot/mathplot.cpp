@@ -1551,7 +1551,7 @@ mpWindow::~mpWindow()
 		else if (rightDownCommand == mpZOOM_RECTANGLE) {
 			ZoomRectRelease(event.GetX(), event.GetY());
 		}
-	else if (rightDownCommand == mpPAN) {
+		else if (rightDownCommand == mpPAN) {
 			m_panDown = false;
 		}
 		ExecuteMouseCommand(rightUpCommand);
