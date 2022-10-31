@@ -97,8 +97,8 @@ mpLayer::mpLayer() : m_type(mpLAYER_UNDEF)
 	m_visible = true;
 }
 
-void mpLayer::SetVisible(bool show) { 
-	m_visible = show; 
+void mpLayer::SetVisible(bool show) {
+	m_visible = show;
 	parent->UpdateBarChartCoordinates();
 }
 
@@ -192,7 +192,7 @@ void mpInfoLayer::Plot(wxDC & dc, mpWindow & w)
 #ifdef MATHPLOT_DO_LOGGING
 		// wxLogMessage(_("mpInfoLayer::Plot() screen size has changed from %d x %d to %d x %d"), m_winX, m_winY, scrx, scry);
 #endif
-			if (m_winX != 1) 
+			if (m_winX != 1)
 				m_dim.x = floor((double)m_dim.x*scrx/m_winX);	//(int) floor((double)(m_dim.x*scrx/m_winX));
 			if (m_winY != 1) {
 				m_dim.y = floor((double)m_dim.y*scry/m_winY);
@@ -249,7 +249,7 @@ void mpInfoCoords::Plot(wxDC & dc, mpWindow & w)
 #ifdef MATHPLOT_DO_LOGGING
 			// wxLogMessage(_("mpInfoLayer::Plot() screen size has changed from %d x %d to %d x %d"), m_winX, m_winY, scrx, scry);
 #endif
-			if (m_winX != 1) 
+			if (m_winX != 1)
 				m_dim.x = floor((double)m_dim.x*scrx/m_winX);
 			if (m_winY != 1) {
 				m_dim.y = floor((double)m_dim.y*scry/m_winY);
@@ -378,7 +378,7 @@ void mpInfoLegend::Plot(wxDC & dc, mpWindow & w)
 				dc.GetTextExtent(label, &tmpX, &tmpY);
 				dc.SetPen(ly->GetPen());
 				dc.SetBrush(ly->GetBrush());
-				
+
 				posY = m_dim.y + mpLEGEND_MARGIN + plotCount*tmpY + (tmpY>>1);
 				if (ly->IsBarChart()) {
 					dc.DrawRectangle(m_dim.x + mpLEGEND_MARGIN,	// X start coord
@@ -425,7 +425,7 @@ void mpFX::Plot(wxDC & dc, mpWindow & w)
 		wxCoord maxYpx  = m_drawOutsideMargins ? w.GetScrY() : w.GetScrY() - w.GetMarginBottom();
 
 		wxCoord iy = 0;
-	
+
 		for (wxCoord i = startPx; i < endPx; ++i)
 		{
 			iy = w.y2p( GetY(w.p2x(i)));
@@ -530,13 +530,13 @@ ViewBoundary mpFXY::UpdateViewBoundary(wxCoord xnew, wxCoord ynew)
 	maxDrawY = (maxDrawY > ynew) ? maxDrawY : ynew;
 	minDrawY = (minDrawY < ynew) ? minDrawY : ynew;
 	//drawnPoints++;
-	
+
 	ViewBoundary vb;
 	vb.maxDrawX = maxDrawX;
 	vb.minDrawX = minDrawX;
 	vb.maxDrawY = maxDrawY;
 	vb.minDrawY = minDrawY;
-	
+
 	return vb;
 }
 
@@ -1724,11 +1724,11 @@ mpWindow::~mpWindow()
 			}
 			else if ((*li)->IsFX()) {
 				mpFX *fx = (mpFX*)(*li);
-				
+
 				wxCoord minXpx = fx->GetDrawOutsideMargins() ? 0 : w->GetMarginLeft();
 				wxCoord maxXpx = fx->GetDrawOutsideMargins() ? w->GetScrX() : w->GetScrX() - w->GetMarginRight();
 
-				wxCoord currX = minXpx; 
+				wxCoord currX = minXpx;
 				double xDouble = w->p2x(currX);
 				double closestX = xDouble;
 				double delta = sqrt(pow((y - fx->GetY(xDouble))*GetScaleY(), 2) + pow((x - xDouble)*GetScaleX(), 2));
@@ -1777,7 +1777,7 @@ mpWindow::~mpWindow()
 					coordY = closestY;
 				}
 				valueY = coordY;
-			} 
+			}
 			else if ((*li)->IsFXY()) {
 				mpFXY *fxy = (mpFXY*)(*li);
 
@@ -1831,7 +1831,7 @@ mpWindow::~mpWindow()
 	#endif
 		}
 	}
-	
+
 	void mpWindow::ZoomRectRelease(int x, int y) {
 	  m_zoomRectDown = false;
 		wxPoint release(x, y);
@@ -2151,8 +2151,8 @@ void mpWindow::OnSize( wxSizeEvent& WXUNUSED(event) )
 //std::map<double, std::tuple<double, double>> barCoordinates; //<x, <yBase, yTop>
 void mpWindow::UpdateBarChartCoordinates(){
 	barChartMinMaxValues.clear();
-	
-	//std::map<double, double> baseMap; 
+
+	//std::map<double, double> baseMap;
 	wxLayerList::iterator li;
 	for (li = m_layers.begin(); li != m_layers.end(); li++) //Plot BarChart
 	{
@@ -2160,16 +2160,16 @@ void mpWindow::UpdateBarChartCoordinates(){
 
 		mpBAR *barChart = (mpBAR*)(*li);
 		barChart->barCoordinates.clear();
-		
+
 		//std::map<double, double>::iterator base;
 		std::map<double, std::pair<double, double>>::iterator base;
 		double x, y, baseY;
-		barChart->Rewind(); 
+		barChart->Rewind();
 		barChart->GetNextXY(x, y);
 		barChart->Rewind();
 		while (barChart->GetNextXY(x, y)) {
 			base = barChartMinMaxValues.find(x);
-			if (base != barChartMinMaxValues.end()){ 
+			if (base != barChartMinMaxValues.end()){
 				if (y < 0) {
 					baseY = base->second.first;
 					base->second.first = baseY + y;
@@ -2186,9 +2186,9 @@ void mpWindow::UpdateBarChartCoordinates(){
 				else
 					barChartMinMaxValues.insert({x, std::make_pair(0, y)});
 			}
-			
+
 			/*base = baseMap.find(x);
-			if (base != baseMap.end()){ 
+			if (base != baseMap.end()){
 				baseY = base->second;
 				base->second = baseY + y;
 			}
@@ -2261,7 +2261,7 @@ double mpWindow::GetBarChartInterval() {
 	for (li = m_layers.begin(); li != m_layers.end(); li++)
 	{
 		if (!(*li)->IsBarChart() || !(*li)->IsVisible()) continue;
-		
+
 		mpBAR *barChart = (mpBAR*)(*li);
 		barChart->Rewind();
 		double x, y;
@@ -2274,7 +2274,7 @@ double mpWindow::GetBarChartInterval() {
 	}*/
 	std::map<double, std::pair<double, double>>::iterator bcmmv = barChartMinMaxValues.begin();
 	if (bcmmv == barChartMinMaxValues.end()) return shortestDelta;
-	
+
 	double x, previousX = bcmmv->first;
 	bcmmv++;
 	for (bcmmv; bcmmv != barChartMinMaxValues.end(); bcmmv++)
@@ -2282,7 +2282,7 @@ double mpWindow::GetBarChartInterval() {
 		x = bcmmv->first;
 		if (abs(x-previousX) < shortestDelta)
 			shortestDelta = abs(x-previousX);
-			
+
 		previousX = x;
 	}
 	return shortestDelta;
@@ -2293,7 +2293,7 @@ void mpWindow::OnPaint( wxPaintEvent& WXUNUSED(event) )
 {
 	double barChartInterval = GetBarChartInterval() * m_scaleX;
 //	wxLogMessage(_("barChartInterval: %f * %f = %f"), barChartInterval, m_scaleX, barChartInterval * m_scaleX);//x2p(barChartInterval));
-	
+
 	wxPaintDC dc(this);
 	dc.GetSize(&m_scrX, &m_scrY);   // This is the size of the visible area only!
 //     DoPrepareDC(dc);
@@ -2345,14 +2345,14 @@ void mpWindow::OnPaint( wxPaintEvent& WXUNUSED(event) )
 	};
 
 	//std::vector<double> baseX, baseY;
-	std::map<double, double> baseMap; 
+	std::map<double, double> baseMap;
 	for (li = m_layers.begin(); li != m_layers.end(); li++) //Plot BarChart
 	{
 		if (!(*li)->IsBarChart() || !(*li)->IsVisible()) continue;
 
 		mpBAR *barChart = (mpBAR*)(*li);
 
-	/*	wxPen  barPen = barChart->GetPen(); 
+	/*	wxPen  barPen = barChart->GetPen();
 		barPen.SetWidth(1);
 		trgDc->SetPen(wxPen(m_fgColour));//barPen);
 		wxBrush barBrush( barPen.GetColour() );
@@ -2378,12 +2378,12 @@ void mpWindow::OnPaint( wxPaintEvent& WXUNUSED(event) )
 		//ViewBoundary vb;
 		std::map<double, std::tuple<double, double>>::iterator barCoords;
 		double baseY;
-		while (barChart->GetNextXY(x, y)) {			
+		while (barChart->GetNextXY(x, y)) {
 			barCoords = barChart->barCoordinates.find(x);
 			ix = x2p(x);
 			iybase = y2p(std::get<0>(barCoords->second));
 			iy = y2p(std::get<1>(barCoords->second));
-			
+
 // #ifdef MATHPLOT_DO_LOGGING
 //wxLogMessage(_("X=%f, Y=%f, ix = %d, iy = %d, iybase = %d  ->  %f  ->  %f"), x, y, ix, iy, iybase, std::get<0>(barCoords->second), std::get<1>(barCoords->second));
 // #endif
@@ -2561,11 +2561,11 @@ bool mpWindow::UpdateBBox()
 			}
 			else
 			{
-				if (f->GetMinX()<m_minX) 
+				if (f->GetMinX()<m_minX)
 					m_minX=f->GetMinX();
 				if (f->GetMaxX()>m_maxX)
 					m_maxX=f->GetMaxX();
-				if (f->GetMinY()<m_minY) 
+				if (f->GetMinY()<m_minY)
 					m_minY=f->GetMinY();
 				if (f->GetMaxY()>m_maxY)
 					m_maxY=f->GetMaxY();
@@ -3127,14 +3127,14 @@ std::tuple<double, double, double> mpBAR::GetClosestXY(double x, double y, doubl
 	std::map<double, std::tuple<double, double>>::iterator bc = barCoordinates.begin();
 	//std::map<double, std::tuple<double, double>>::iterator closestXit;
 	delta = abs( bc->first - x);
-	closestX = bc->first; 
+	closestX = bc->first;
 	yValue = std::get<0>(bc->second);
 	yValue2 = std::get<1>(bc->second);
 	closestY = (std::get<0>(bc->second) + std::get<1>(bc->second))/2;
 	closestYvalue = yValue2 - yValue;
 	bc++;
 	for (bc; bc != barCoordinates.end(); bc++){
-		double thisPointDelta = abs( bc->first - x); 
+		double thisPointDelta = abs( bc->first - x);
 		if ( thisPointDelta < delta){
 			delta = thisPointDelta;
 			//closestXit = bc;
@@ -3143,9 +3143,9 @@ std::tuple<double, double, double> mpBAR::GetClosestXY(double x, double y, doubl
 			yValue2 = std::get<1>(bc->second);
 			closestY = (std::get<0>(bc->second) + std::get<1>(bc->second))/2;//yValue;
 			closestYvalue = yValue2 - yValue;
-		}	
+		}
 	}
-		
+
 	/*for (bc = barCoordinates.begin(); bc != barCoordinates.end(); bc++)
 	{
 		xValue = bc->first;
