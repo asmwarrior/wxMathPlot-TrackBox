@@ -208,9 +208,9 @@ MyFrame::MyFrame() : wxFrame( (wxFrame *)NULL, -1, wxT("wxWindows mathplot sampl
 	view_menu->AppendSeparator();
 	view_menu->Append( ID_ALIGN_X_AXIS, wxT("Switch &X axis align"));
 	view_menu->Append( ID_ALIGN_Y_AXIS, wxT("Switch &Y axis align"));
-	view_menu->AppendCheckItem( ID_TOGGLE_TICKS, wxT("Show ticks"));    
+	view_menu->AppendCheckItem( ID_TOGGLE_TICKS, wxT("Show ticks"));
 	view_menu->Check(ID_TOGGLE_TICKS, false);
-	view_menu->AppendCheckItem( ID_TOGGLE_GRID, wxT("Show grid"));    
+	view_menu->AppendCheckItem( ID_TOGGLE_GRID, wxT("Show grid"));
 	view_menu->Check(ID_TOGGLE_GRID, true);
 	//view_menu->AppendCheckItem( ID_TOGGLE_SCROLLBARS, wxT("Show Scroll Bars"));
 	view_menu->AppendCheckItem( ID_TOGGLE_INFO, wxT("Show overlay info box"));
@@ -483,9 +483,9 @@ void MyFrame::OnBlackTheme(wxCommandEvent& event)
 	//wxColor black(0,0,0);
 	//wxColor white(255,255,255);
 	wxColour grey(96, 96, 96);
-	if (event.IsChecked()){	
+	if (event.IsChecked()){
 		//wxBrush* brush = new wxBrush(*wxTRANSPARENT_BRUSH);
-		//SetColourTheme(background, foreground, axes, grids)	   
+		//SetColourTheme(background, foreground, axes, grids)
 		m_plot->SetColourTheme(wxColour(25,25,25), *wxWHITE, grey, wxColour(45,45,45));
 
 		if (m_plot->GetLayerByName("legend") != nullptr)
@@ -507,7 +507,7 @@ void MyFrame::OnBlackTheme(wxCommandEvent& event)
 void MyFrame::OnScientificNotation(wxCommandEvent& event)
 {
 	mpScaleY* yaxis = ((mpScaleY*)(m_plot->GetLayer(1)));
-	if (event.IsChecked()){	
+	if (event.IsChecked()){
 		yaxis->SetLabelFormat("%1.1e ");
 	}
 	else
